@@ -7,11 +7,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return Math.round(a * b * 10000) / 10000;
+    return a * b;
 }
 
 function divide(a, b) {
-    return Math.round((a / b) * 10000) / 10000;
+    return a / b;
 }
 
 let operand1 = "", operand2 = "", operator = "";
