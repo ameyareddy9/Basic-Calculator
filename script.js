@@ -7,11 +7,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return a * b;
+    return Math.round(a * b * 10000) / 10000;
 }
 
 function divide(a, b) {
-    return a / b;
+    return Math.round((a / b) * 10000) / 10000;
 }
 
 let operand1 = "", operand2 = "", operator = "";
@@ -33,6 +33,9 @@ function operate(op1, op2, op) {
         case '/':
             return divide(op1, op2);
             break;
+        
+        default: 
+            return op1;
     }
 }
 
@@ -40,9 +43,59 @@ const calculator = document.querySelector("#calculator");
 const display = calculator.querySelector("#display");
 const btns = calculator.querySelectorAll(".btn");
 
+const numeric = ".0123456789";
+let invalid = 0;
+let flag = 0;
+
 btns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        operand1 += e.target.textContent;
-        display.value = operand1;
+        const char = e.target.textContent;
+
+        if(!numeric.includes(char)) {
+            if(char === 'C') {
+                display.value = "";
+                operand1 = ""; 
+                operand2 = "";
+                operator = "";
+                invalid = 0;
+                flag = 0;
+            }
+
+            else if(!invalid) {
+                const num1 = Number(operand1), num2 = Number(operand2);
+                if(char === '=') {
+                    display.value = `${operate(num1, num2, operator)}`;
+                    operand1 = Number(display.value); 
+                    operand2 = "";
+                    operator = "";
+                    flag = 1;
+                }
+                else {
+                    display.value = flag ? `${operate(num1, num2, operator)}` : "";
+                    operator = char;
+
+                    if(flag) {
+                        operand1 = display.value;
+                        operand2 = "";
+                    }
+
+                    flag = 1;
+                }
+            }
+        }
+
+        else {
+            switch(flag) {
+                case 0: operand1 += char;
+                    display.value = operand1;
+                    break;
+
+                case 1: operand2 += char;
+                    display.value = operand2;
+            }
+        }
+        invalid = numeric.includes(char) || char === 'C' || char === '=' ? 0 : 1;
+        if(invalid) operator = char;
     });
 });
+
