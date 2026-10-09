@@ -14,7 +14,7 @@ function divide(a, b) {
     return a / b;
 }
 
-let operand1, operand2, operator;
+let operand1 = "", operand2 = "", operator = "";
 
 function operate(op1, op2, op) {
     switch(op) {
@@ -26,7 +26,7 @@ function operate(op1, op2, op) {
             return subtract(op1, op2);
             break;
         
-        case '*':
+        case 'x':
             return multiply(op1, op2);
             break;
 
@@ -37,4 +37,12 @@ function operate(op1, op2, op) {
 }
 
 const calculator = document.querySelector("#calculator");
+const display = calculator.querySelector("#display");
+const btns = calculator.querySelectorAll(".btn");
 
+btns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        operand1 += e.target.textContent;
+        display.value = operand1;
+    });
+});
