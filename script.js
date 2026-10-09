@@ -35,3 +35,6 @@ function operate(op1, op2, op) {
             break;
     }
 }
+
+const calculator = document.querySelector("#calculator");
+

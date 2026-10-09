@@ -1,0 +1,79 @@
+/* 1. Global Box-Sizing Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Center Calculator in Viewport */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e24;
+  font-family: Arial, sans-serif;
+}
+
+/* 3. Outer Container */
+#calculator {
+  width: 320px;
+  padding: 20px;
+  background-color: #2b2d42;
+  border-radius: 12px;
+}
+
+/* 4. Display Screen */
+#display {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 16px;
+  padding: 10px 15px;
+  font-size: 2rem;
+  text-align: right;
+  border: none;
+  border-radius: 6px;
+  background-color: #edf2f4;
+  color: #2b2d42;
+}
+
+/* 5. Flexbox Rows */
+.row {
+  display: flex;
+  gap: 10px;           /* Horizontal space between buttons in the row */
+  margin-bottom: 10px; /* Vertical space between rows */
+}
+
+.row:last-child {
+  margin-bottom: 0;    /* Removes bottom margin from the last row */
+}
+
+/* 6. Base Button Style */
+.btn {
+  flex: 1;             /* Each button expands proportionally to fill the row */
+  padding: 18px 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #8d99ae;
+  color: #ffffff;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+/* The '0' button takes up twice the width ratio of standard buttons */
+.btn-zero {
+  flex: 2;
+}
+
+.btn-op {
+  background-color: #f77f00;
+}
+
+.btn-equals {
+  background-color: #2a9d8f;
+}
