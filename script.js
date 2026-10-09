@@ -64,14 +64,14 @@ btns.forEach(btn => {
             else if(!invalid) {
                 const num1 = Number(operand1), num2 = Number(operand2);
                 if(char === '=') {
-                    display.value = `${operate(num1, num2, operator)}`;
+                    display.value = `${Math.round(operate(num1, num2, operator) * 10000) / 10000}`;
                     operand1 = Number(display.value); 
                     operand2 = "";
                     operator = "";
                     flag = 1;
                 }
                 else {
-                    display.value = flag ? `${operate(num1, num2, operator)}` : "";
+                    display.value = flag ? `${Math.round(operate(num1, num2, operator) * 10000) / 10000}` : "";
                     operator = char;
 
                     if(flag) {
