@@ -52,7 +52,7 @@ btns.forEach(btn => {
         const char = e.target.textContent;
 
         if(!numeric.includes(char)) {
-            if(char === 'C') {
+            if(char === 'AC') {
                 display.value = "";
                 operand1 = ""; 
                 operand2 = "";
@@ -86,15 +86,23 @@ btns.forEach(btn => {
 
         else {
             switch(flag) {
-                case 0: operand1 += char;
-                    display.value = operand1;
+                case 0: {
+                    if(!(char === '.' && operand1.includes('.'))) {
+                        operand1 += char 
+                        display.value = operand1;
+                    }
                     break;
+                }
 
-                case 1: operand2 += char;
-                    display.value = operand2;
+                case 1: {
+                    if(!(char === '.' && operand2.includes('.'))) {
+                        operand2 += char 
+                        display.value = operand2;
+                    }
+                }
             }
         }
-        invalid = numeric.includes(char) || char === 'C' || char === '=' ? 0 : 1;
+        invalid = numeric.includes(char) || char === 'AC' || char === '=' ? 0 : 1;
         if(invalid) operator = char;
     });
 });

@@ -67,11 +67,15 @@ body {
 .btn-op {
   background-color: #f77f00;
 }
-
+    
 .btn-equals {
   background-color: #2a9d8f;
 }
 
-.btn-action {
+.AC {
     background-color: #ca1e0b;
+}
+
+.C {
+    background-color: #6395f1;
 }
