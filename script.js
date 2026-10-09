@@ -51,7 +51,7 @@ btns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         const char = e.target.textContent;
 
-        if(!numeric.includes(char)) {
+        if(!numeric.includes(char) && char != 'C') {
             if(char === 'AC') {
                 display.value = "";
                 operand1 = ""; 
@@ -88,7 +88,8 @@ btns.forEach(btn => {
             switch(flag) {
                 case 0: {
                     if(!(char === '.' && operand1.includes('.'))) {
-                        operand1 += char 
+                        if(char === 'C') operand1 = operand1.slice(0, -1);
+                        else operand1 += char 
                         display.value = operand1;
                     }
                     break;
@@ -96,13 +97,17 @@ btns.forEach(btn => {
 
                 case 1: {
                     if(!(char === '.' && operand2.includes('.'))) {
-                        operand2 += char 
+                        if(char === 'C') operand2 = operand2.slice(0, -1);
+                        else operand2 += char 
                         display.value = operand2;
                     }
                 }
             }
         }
-        invalid = numeric.includes(char) || char === 'AC' || char === '=' ? 0 : 1;
+
+        if(char === 'C' && (invalid || display.value.length === 0)) invalid = 1;
+        else invalid = numeric.includes(char) || char === 'AC' || char === '=' || char == 'C' ? 0 : 1;
+
         if(invalid) operator = char;
     });
 });
